@@ -1,19 +1,17 @@
-import React from 'react';
 import {
+  ActivityIndicator,
+  Platform,
   ScrollView,
   StyleSheet,
   View,
-  Platform,
-  ActivityIndicator,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { TodoStats } from '@/components/todo/todo-stats';
-import { TodoInput } from '@/components/todo/todo-input';
 import { TodoFilter } from '@/components/todo/todo-filter';
+import { TodoInput } from '@/components/todo/todo-input';
 import { TodoItemCard } from '@/components/todo/todo-item';
+import { TodoStats } from '@/components/todo/todo-stats';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useTodos } from '@/hooks/use-todos';
