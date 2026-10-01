@@ -1,13 +1,13 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
 import { AnimatedIcon } from '@/components/animated-icon';
 import { HintRow } from '@/components/hint-row';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { WebBadge } from '@/components/web-badge';
 import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import * as Device from 'expo-device';
+import { Link } from 'expo-router';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function getDevMenuHint() {
   if (Platform.OS === 'web') {
@@ -35,8 +35,35 @@ export default function HomeScreen() {
         <ThemedView style={styles.heroSection}>
           <AnimatedIcon />
           <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
+            Welcome to Expo
           </ThemedText>
+
+          {/* Student Information */}
+          <ThemedView style={styles.studentInfo}>
+            <ThemedText type="subtitle">Muhammad Irfan</ThemedText>
+            <ThemedText type="default">Roll No: 23I_3065</ThemedText>
+            <ThemedText type="default">Section B</ThemedText>
+          </ThemedView>
+
+          {/* Task Manager Feature Card */}
+          <Link href={"/todos" as any} asChild>
+            <Pressable style={({ pressed }) => [styles.featureCard, pressed && styles.pressed]}>
+              <View style={styles.featureCardContent}>
+                <ThemedText style={styles.featureIcon}>✅</ThemedText>
+                <View style={styles.featureTextGroup}>
+                  <ThemedText type="smallBold" style={styles.featureTitle}>
+                    Task Manager Feature
+                  </ThemedText>
+                  <ThemedText type="small" themeColor="textSecondary">
+                    Add, track, filter & complete your tasks with AsyncStorage
+                  </ThemedText>
+                </View>
+                <ThemedText type="linkPrimary" style={styles.featureArrow}>
+                  Open →
+                </ThemedText>
+              </View>
+            </Pressable>
+          </Link>
         </ThemedView>
 
         <ThemedText type="code" style={styles.code}>
@@ -44,15 +71,9 @@ export default function HomeScreen() {
         </ThemedText>
 
         <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
+          <HintRow title="Try editing" hint={<ThemedText type="code">src/app/index.tsx</ThemedText>} />
           <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
+          <HintRow title="Tasks screen" hint={<ThemedText type="code">src/app/todos.tsx</ThemedText>} />
         </ThemedView>
 
         {Platform.OS === 'web' && <WebBadge />}
@@ -80,10 +101,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    gap: Spacing.three,
   },
   title: {
     textAlign: 'center',
+  },
+  studentInfo: {
+    alignItems: 'center',
+    gap: Spacing.one,
+  },
+  featureCard: {
+    width: '100%',
+    backgroundColor: '#007AFF12',
+    borderColor: '#007AFF40',
+    borderWidth: 1,
+    borderRadius: Spacing.three,
+    padding: Spacing.three,
+    marginTop: Spacing.two,
+  },
+  featureCardContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.three,
+  },
+  featureIcon: {
+    fontSize: 24,
+  },
+  featureTextGroup: {
+    flex: 1,
+    gap: 2,
+  },
+  featureTitle: {
+    fontSize: 15,
+    color: '#007AFF',
+  },
+  featureArrow: {
+    fontWeight: '700',
+  },
+  pressed: {
+    opacity: 0.7,
   },
   code: {
     textTransform: 'uppercase',

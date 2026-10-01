@@ -1,0 +1,33 @@
+name: Expo CI 23I-3065
+
+on:
+  push:
+    branches:
+      - main
+      - feature/products
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Expo project
+        run: npx expo-doctor
+
+      - name: Check TypeScript
+        run: npx tsc --noEmit
