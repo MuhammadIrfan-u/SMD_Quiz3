@@ -46,7 +46,7 @@ export default function HomeScreen() {
           </ThemedView>
 
           {/* Task Manager Feature Card */}
-          <Link href="/todos" asChild>
+          <Link href={"/todos" as any} asChild>
             <Pressable style={({ pressed }) => [styles.featureCard, pressed && styles.pressed]}>
               <View style={styles.featureCardContent}>
                 <ThemedText style={styles.featureIcon}>✅</ThemedText>
@@ -85,7 +85,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justify: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   safeArea: {

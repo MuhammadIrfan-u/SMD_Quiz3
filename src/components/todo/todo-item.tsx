@@ -46,7 +46,7 @@ export function TodoItemCard({ item, onToggle, onDelete }: TodoItemProps) {
           ]}>
           {item.completed && (
             <SymbolView
-              name={{ ios: 'checkmark', android: 'check', web: 'checkmark' }}
+              name={{ ios: 'checkmark', android: 'check', web: 'check' }}
               tintColor="#FFFFFF"
               size={12}
             />
@@ -93,7 +93,7 @@ export function TodoItemCard({ item, onToggle, onDelete }: TodoItemProps) {
         onPress={() => onDelete(item.id)}
         style={({ pressed }) => [styles.deleteBtn, pressed && styles.pressed]}>
         <SymbolView
-          name={{ ios: 'trash', android: 'delete', web: 'trash' }}
+          name={{ ios: 'trash', android: 'delete', web: 'delete' }}
           tintColor="#FF3B30"
           size={16}
         />
